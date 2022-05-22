@@ -1,0 +1,15 @@
+{% extends 'base.html' %} {% block content %}
+<center>
+    <div class="col-md-11 mx-auto">
+        <div class="form-group  ">
+            <form action="/" , method="POST">
+                <input type='text' placeholder="paste title" name="title" style="background-color: #303030;color:#ddd; margin-bottom: 4px; border:solid 1px #303030"></input>
+                <input type='checkbox' name="is_priv" style="background-color: #303030;color:#ddd">private paste (won't appear in the recent paste category)</input>
+                <input type='checkbox' name="otv" style="background-color: #303030; color:#ddd">one time view (expires after one visit)</input>
+                <button type="submit" class="header__btn">+ paste</button>
+                <textarea class="form-control" name="content" placeholder="" autofocus="" style="background-color:#303030; color:#ddd;border:solid 1px #303030"></textarea>
+
+            </form>
+        </div>
+    </div>
+</center>{% endblock content %}

@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>AnonPaste</title>
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+    <link rel="stylesheet" href="/src/app/static/base_style.css"></link>
+    <style>
+        ul {
+            display: inline-flex;
+            list-style: none;
+        }
+        
+        li {
+            padding-left: 4px;
+        }
+        
+        html {
+            overflow-x: auto;
+        }
+        
+        html,
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: "OpenSansRegular";
+        }
+        
+        body {
+            font-family: "OpenSansRegular";
+            font-size: 14px;
+            color: #fff;
+            background: #272727;
+            text-align: left;
+            letter-spacing: normal;
+            letter-spacing: 0.2px;
+        }
+        
+        a {
+            color: #00bc8c;
+            text-decoration: none;
+            background-color: transparent;
+        }
+        
+        a:hover {
+            color: #00a97e;
+            text-decoration: none;
+            background-color: transparent;
+        }
+        
+        .navbar-dark .navbar-nav .nav-link {
+            color: rgba(255, 255, 255, 0.6);
+        }
+        
+        .logo {
+            display: inline-block;
+            font-family: "OpenSansSemiBold";
+            background-color: #00bc8c;
+            color: #fff;
+            font-size: 24px;
+            width: auto;
+            padding: 6px 11px;
+            margin: 7px 12px;
+            border-radius: 12px;
+        }
+        
+        textarea {
+            resize: none;
+            letter-spacing: 0.5px;
+            border: 1px solid #333;
+            font-size: 14px;
+            line-height: 1.5rem;
+            width: 650px;
+            height: 300px;
+            color: #ddd;
+            border-radius: 3px;
+            padding: 8px 12px;
+        }
+        
+        .header__btn {
+            background: #00bc8c no-repeat 8px 9px;
+            background-size: auto;
+            background-size: 13px 13px;
+            border-radius: 3px;
+            color: #fff;
+            cursor: pointer;
+            font-size: 1em;
+            font-weight: 400;
+            height: 30px;
+            line-height: 28px;
+            text-transform: lowercase;
+            margin: 2px 8px 0 3px;
+            padding: 0 10px 0 26px;
+        }
+        
+        .nav-links {
+            display: inline-block;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .nav-button {
+            display: inline-block;
+            font-family: "OpenSansSemiBold";
+            background-color: #00bc8c;
+            color: #fff;
+            font-size: 16px;
+            width: auto;
+            padding: 4px 12px;
+            margin: 2px 0px;
+            border-radius: 4px;
+        }
+    </style>
+</head>
+
+<body>
+    <header class="p-3" style="background-color: #272727;">
+        <div class="container">
+            <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
+
+                <div class="nav-item nav-logo off-drag">
+                    <a href="/">
+                        <div class="logo">AnonPaste</div>
+                    </a>
+                </div>
+                </li>
+
+                <div class="nav-links">
+                    <ul>
+                        <li>
+                            <div class="nav-item">
+                                <a href="/faq">
+                                    <div class="nav-button">FAQ</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="nav-item">
+                                <a href="/">
+                                    <div class="nav-button">Home</div>
+                                </a>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="nav-item">
+                                <a href="/">
+                                    <div class="nav-button new-paste">New Paste</div>
+                                </a>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    {%with msg=get_flashed_messages(with_categories=True)%}
+    <ul style="display:none;list-style: none;">
+        {% for category,message in messages %}
+        <li style="display:none;list-style: none;">
+            <div class="alert alert-{{ category }}" role="alert">{{ message }}</div>
+        </li>
+        {% endfor %}
+    </ul>
+    {%endwith%} {% block content %} {% endblock content %}
+    <hr style="color:#303030">
+    <center>
+        <div class="container pull-right float-right" style="background-color: #272727; padding-top:40px; align-content:right;">
+            <div id="intro" class="pull-right float-right" style="background-color: #272727;align-content: right;">
+                <h3>Latest Pastes</h3>
+                <ul class="list-group-item-dark" style="background-color: #272727; display: block;">
+                    {% for paste in latest_pastes %}
+                    <li>
+                        <a href="/{{ paste[2] }}">{{ paste[1] }}</a>
+                        <br> {{paste[4]}}
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+    </center>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
+</html>
